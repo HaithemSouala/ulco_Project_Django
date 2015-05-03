@@ -1,0 +1,86 @@
+
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ page_name }}{% endblock %}
+
+{% block body %}
+<div class="hero-unit">
+<h2>{{ page_name }}</h2>
+<a class="btn" href="{% url "recipe-new" %}"><i class="icon-plus-sign"></i>{% trans "New Recipe" %}</a>
+<table class="table">
+<thead>
+	<th></th>
+	<th>{% trans "Recipe" %}</th>
+	<th></th>
+	<th>{% trans "Delete" %}</th>
+</thead>
+<tbody>
+	{% for recipe in recipes %}
+	<tr>
+		
+		<td>
+			{% if recipe.is_favorite %}
+			<i class="icon-star"></i>
+			{% else %}
+			<i class="icon-star-empty"></i>
+			{% endif %}
+		</td>
+		<td><a href="{% url "recipe-detail" recipe.pk %}">{{recipe.name}}</a></td>
+		<td>{{recipe.description|truncatechars:30}}</td>
+		{% if perms.recipes.delete_recipe %}
+		<td><a id="remove{{ recipe.id }}" class="btn remove-recipe"><i class="icon-remove-circle"></i></a></td>
+		{% endif %}
+	</tr>
+
+	{% empty %}
+	<tr>
+		<td><a href="{%url "recipe-new" %}">{% trans "Add one." %}</a></td>
+	</tr>
+	{% endfor %}
+</tbody>
+	
+</table>
+<div class="pagination pagination-centered">
+	<ul>
+		{% if contacts.has_previous %}
+            <li><a href="?page={{ contacts.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+        	<li class="disabled"><a href="#">&laquo;</a></li>
+        {% endif %}
+		{% for page in contacts.paginator.page_range %}
+		{% if page == contacts.number %}
+			<li class="active"><a href="?page={{ page }}">{{ page }}</a></li>
+		{% else %}
+			<li><a href="?page={{ page }}">{{ page }}</a></li>
+		{% endif %}
+		{% endfor %}
+		{% if contacts.has_next %}
+            <li><a href="?page={{ contacts.next_page_number }}">&raquo;</a></li>
+        {% else %}
+        	<li class="disabled"><a href="#">&raquo;</a></li>
+        {% endif %}
+	</ul>
+</div>
+</div>
+{% endblock %}
+
+{% block extend-js %}
+<script type="application/javascript">
+
+$(function(){
+	$(".remove-recipe").click(function(){
+		var id = new String(this.id);
+		var re = /remove/;
+		while(re.test(id)){
+			id = id.replace(re,"");
+		}
+		$.get('{% url "recipe-remove" %}?recipe='+id,function(data){
+			if(data=='Success'){
+				$('#remove'+id).parent().parent().remove();
+			}
+		});
+	});
+});
+
+</script>
+{% endblock %}

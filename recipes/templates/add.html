@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block title %}{% trans "New Recipe" %}{% endblock %}
+
+{% block body %}
+    <div class="hero-unit">
+        <h2>{% trans "New Recipe" %}</h2>
+
+        <form id="add_recipe_form" action="{{ form_action }}" method="post">
+            {% csrf_token %}
+            {% for field in recipe_form %}
+                <div class="form-field">
+                    {{ field.errors }}
+                    <div>{{ field.label_tag }}</div>
+                    <div>{{ field }}</div>
+                </div>
+            {% endfor %}
+            <h3>{% trans "Ingredients" %}</h3>
+            {{ ingredient_formset.management_form }}
+            <table id="{{ ingredient_formset.prefix }}" class="table">
+                <thead>
+                <th class="span2">{% trans "Amount" %}</th>
+                <th></th>
+                <th class="span2">{% trans "Ingredient Name" %}</th>
+                </thead>
+                <tbody>
+                {% for form in ingredient_formset %}
+                    {% include "addIngredient.html" %}
+                {% endfor %}
+                </tbody>
+            </table>
+            <a id="add_ingredient" class="btn" href=""><i class="icon-plus-sign"></i>{% trans "Add Ingredient" %}</a>
+
+            <h3>{% trans "Steps" %}</h3>
+            {{ recipe_step_formset.management_form }}
+            <ul id="{{ recipe_step_formset.prefix }}" class="sortable unstyled">
+                {% for form in recipe_step_formset %}
+                    {% include "addRecipeStep.html" %}
+                {% endfor %}
+            </ul>
+            <a id="add_step" class="btn" href=""><i class="icon-plus-sign"></i>{% trans "Add step" %}</a>
+
+            <div class="form-actions">
+                <button class="btn btn-primary" type="submit">{% trans "Add Recipe" %}</button>
+            </div>
+
+        </form>
+    </div>
+{% endblock %}
+
+{% block extend-js %}
+    <script type="application/javascript">
+        <!--
+        $(function () {
+            $('.sortable').sortable();
+            $('.sortable').disableSelection();
+            $('#add_ingredient').click(function () {
+                $.get('{% url "recipe-new-ingredient" %}', function (data) {
+                    addNewForm('{{ ingredient_formset.prefix }}', data);
+                    $('.remove-ingredient').click(function () {
+                        var $total_forms = $('#id_{{ ingredient_formset.prefix }}' +
+                                '-TOTAL_FORMS');
+                        var num_forms = $total_forms.val();
+                        $total_forms.val(--num_forms);
+                        $(this).parent().parent().remove();
+                        return false;
+                    });
+                });
+                return false;
+            });
+            $('#add_step').click(function () {
+                $.get('{% url "recipe-new-step" %}', function (data) {
+                    addNewForm('{{ recipe_step_formset.prefix }}', data);
+                    $('.remove-step').click(function () {
+                        var $total_forms = $('#id_{{ recipe_step_formset.prefix }}' +
+                                '-TOTAL_FORMS');
+                        var num_forms = $total_forms.val();
+                        $total_forms.val(--num_forms);
+                        $(this).parent().remove();
+                        return false;
+                    });
+                });
+                return false;
+            });
+            $('#add_recipe_form').submit(function () {
+                $('#{{ ingredient_formset.prefix }} > tbody > tr').each(getOrder);
+                $('#{{ recipe_step_formset.prefix }} > li').each(getOrder);
+            });
+        });
+        /*
+         *
+         */
+        function getOrder(index, Element) {
+            var order = $(Element).children('input[name*="number"]')[0];
+            $(order).val(index);
+        }
+
+        function addNewForm(prefix, data) {
+            $total_forms = $('#id_' + prefix + '-TOTAL_FORMS');
+            var forms = $total_forms.val();
+            var re = /__prefix__/;
+            while (re.test(data)) {
+                data = data.replace(re, forms);
+            }
+            $('#' + prefix).append(data);
+            $total_forms.val(++forms);
+        }
+        -->
+    </script>
+{% endblock %}

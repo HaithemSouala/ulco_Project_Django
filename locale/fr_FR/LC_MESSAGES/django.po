@@ -1,0 +1,104 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-05-03 20:58+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\cookbook\templates\base.html.py:24
+msgid "Home"
+msgstr "Accueil"
+
+
+#: .\cookbook\templates\base.html.py:25
+msgid "My Favorites"
+msgstr "Ma Séléction"
+
+#: .\cookbook\templates\base.html.py:28
+msgid "Hello,"
+msgstr "Bonjour"
+
+#: .\cookbook\templates\base.html.py:28
+msgid "[Log out]"
+msgstr "Déconnexion"
+
+#: .\cookbook\templates\registration\login.html.py:3
+msgid "Login"
+msgstr "Authentification"
+
+#: .\cookbook\templates\registration\login.html.py:11
+msgid "Please sign in"
+msgstr "Se connecter"
+
+#: .\cookbook\templates\registration\login.html.py:14
+msgid "Your username and password didn't match. Please try again."
+msgstr "Les données sont erronées, Merci de essayer à nouveau."
+
+#: .\recipes\templates\add.html.py:5 .\recipes\templates\add.html.py:9
+#: .\recipes\templates\list.html.py:9
+msgid "New Recipe"
+msgstr "Nouvelle recette"
+
+#: .\recipes\templates\add.html.py:20 .\recipes\templates\detail.html.py:30
+msgid "Ingredients"
+msgstr "Ingrédients"
+
+#: .\recipes\templates\add.html.py:24
+msgid "Amount"
+msgstr "Quantité"
+
+#: .\recipes\templates\add.html.py:26
+msgid "Ingredient Name"
+msgstr "Nom"
+
+#: .\recipes\templates\add.html.py:34
+msgid "Add Ingredient"
+msgstr "Ajouter un élément"
+
+#: .\recipes\templates\add.html.py:36 .\recipes\templates\detail.html.py:36
+msgid "Steps"
+msgstr "Etapes"
+
+#: .\recipes\templates\add.html.py:43
+msgid "Add step"
+msgstr "Ajouter une étape"
+
+#: .\recipes\templates\add.html.py:46
+msgid "Add Recipe"
+msgstr "Ajouter une recette"
+
+#: .\recipes\templates\addIngredient.html.py:9
+msgid "Remove"
+msgstr "Supprimer"
+
+#: .\recipes\templates\detail.html.py:24
+msgid "Update Recipe"
+msgstr "Modifier la recette"
+
+#: .\recipes\templates\list.html.py:13
+msgid "Recipe"
+msgstr "Recette"
+
+#: .\recipes\templates\list.html.py:15
+msgid "Delete"
+msgstr "Supprimer"
+
+#: .\recipes\templates\list.html.py:37
+msgid "No Recipes Yet!"
+msgstr "Aucune"
+
+#: .\recipes\templates\list.html.py:37
+msgid "Add one."
+msgstr "Ajouter une recette."

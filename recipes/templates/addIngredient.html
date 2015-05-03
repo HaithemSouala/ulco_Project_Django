@@ -1,0 +1,11 @@
+{% load i18n %}
+<tr>
+	{{ form.id }}
+	{{ form.number }}
+	<td class="ingredient-amount span3">{{ form.amount }}</td>
+	<td class="span3">{{ form.unit }}</td>
+	<td class="ingredient-name span3">{{ form.name }}</td>
+	<td class="span2">
+		<a class="btn remove-ingredient" href=""><i class="icon-remove-circle"></i>{% trans "Remove" %}</a>
+	</td>
+</tr>
