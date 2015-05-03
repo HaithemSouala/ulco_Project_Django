@@ -1,7 +1,7 @@
 '''
-Created on Mar 12, 2013
+Created on April 15, 2015
 
-@author: bhowell
+@author: Haithem SOUALA
 '''
 from django.contrib import admin
 from mptt.admin import MPTTModelAdmin

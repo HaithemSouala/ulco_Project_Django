@@ -29,8 +29,8 @@ class CategoryModelTest(TestCase):
 
 class RecipeModelTest(TestCase):
     def setUp(self):
-        self.test_user = 'test'
-        self.test_password = 'password'
+        self.test_user = 'root'
+        self.test_password = 'root'
         self.user = User.objects.create_user(username=self.test_user,
                                              password=self.test_password)
 
